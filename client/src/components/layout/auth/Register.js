@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import { setAlert } from "../../../actions/alert";
 // import axios from "axios";
 import PropTypes from "prop-types";
+import { register } from "../../../actions/auth";
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,6 +25,8 @@ const Register = ({ setAlert }) => {
       // console.log("PAsswords do not match");
       setAlert("Passwords do not Match", "danger");
     } else {
+      register({ name, email, password });
+
       console.log(formData);
       // const newUser = {
       //   name,
@@ -83,7 +86,7 @@ const Register = ({ setAlert }) => {
             type="password"
             placeholder="Password"
             name="password"
-            minLength="6"
+            // minLength="6"
             value={password}
             onChange={(e) => onChange(e)}
             required
@@ -94,7 +97,7 @@ const Register = ({ setAlert }) => {
             type="password"
             placeholder="Confirm Password"
             name="password2"
-            minLength="6"
+            // minLength="6"
             value={password2}
             onChange={(e) => onChange(e)}
             required
@@ -111,5 +114,6 @@ const Register = ({ setAlert }) => {
 
 Register.prototypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 };
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
