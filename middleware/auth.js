@@ -2,6 +2,8 @@
 // response objects and a callback "next" that we've to run when
 // we're done
 
+// YOU HAVE TO ADD AUTH LAYER IN THE PRIVATE ROUTES
+
 const jwt = require("jsonwebtoken");
 const config = require("config");
 
