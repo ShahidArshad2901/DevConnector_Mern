@@ -6,7 +6,7 @@ import Register from "./components/layout/auth/Register";
 import Login from "./components/layout/auth/Login";
 import Alert from "./components/layout/Alert";
 import Dashboard from "./components/dashboard/Dashboard";
-import PrivateRoute from "./components/rounting/PrivateRoute";
+import PrivateRoute from "./components/routing/PrivateRoute";
 import "./App.css";
 
 // Redux
