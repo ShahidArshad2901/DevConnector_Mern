@@ -5,6 +5,8 @@ import Landing from "./components/layout/Landing";
 import Register from "./components/layout/auth/Register";
 import Login from "./components/layout/auth/Login";
 import Alert from "./components/layout/Alert";
+import Dashboard from "./components/dashboard/Dashboard";
+import PrivateRoute from "./components/rounting/PrivateRoute";
 import "./App.css";
 
 // Redux
@@ -27,12 +29,23 @@ const App = () => {
         <Fragment>
           {/* <Landing /> */}
           <Navbar />
+          <Alert />
+          <Routes>
+            <Route exact path="/" element={<Landing />} />
+          </Routes>
           <section className="container">
-            <Alert />
             <Routes>
-              <Route exact path="/" element={<Landing />} />
               <Route exact path="/register" element={<Register />} />
               <Route exact path="/login" element={<Login />} />
+              <Route
+                exact
+                path="/dashboard"
+                element={
+                  <PrivateRoute>
+                    <Dashboard />
+                  </PrivateRoute>
+                }
+              />
             </Routes>
           </section>
         </Fragment>
