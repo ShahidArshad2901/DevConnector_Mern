@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile, getCurrentProfile } from "../../actions/profile";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const EditProfile = ({
   profile: { profile, loading },
@@ -24,6 +24,8 @@ const EditProfile = ({
     linkedin: "",
   });
 
+  const navigate = useNavigate();
+
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
   useEffect(() => {
@@ -34,7 +36,7 @@ const EditProfile = ({
       website: loading || !profile.website ? "" : profile.website,
       location: loading || !profile.location ? "" : profile.location,
       status: loading || !profile.status ? "" : profile.status,
-      skills: loading || !profile.skills ? "" : profile.skills,
+      skills: loading || !profile.skills ? "" : profile.skills.toString(),
       githubusername:
         loading || !profile.githubusername ? "" : profile.githubusername,
       bio: loading || !profile.bio ? "" : profile.bio,
@@ -65,7 +67,11 @@ const EditProfile = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    createProfile(formData, true);
+    const success = !!createProfile(formData, true);
+    console.log(success, "RETURN");
+    if (success) {
+      navigate("/dashboard");
+    }
   };
   return (
     <section className="container">

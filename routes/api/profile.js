@@ -25,6 +25,7 @@ router.get("/me", auth, async (req, res) => {
     res.json(profile);
   } catch (error) {
     console.error(error.message);
+    console.log(error);
     res.status(500).send("Server Error");
   }
 });
@@ -72,8 +73,9 @@ router.post(
     if (bio) profileFields.bio = bio;
     if (status) profileFields.status = status;
     if (githubusername) profileFields.githubusername = githubusername;
+    console.log(skills);
     if (skills) {
-      profileFields.skills = skills.split(",").map((skill) => skill.trim());
+      profileFields.skills = skills?.split(",").map((skill) => skill.trim());
     }
     // build social object
 

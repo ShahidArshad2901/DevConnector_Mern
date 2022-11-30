@@ -22,13 +22,7 @@ const PrivateRoute = ({
   //     }
   //   />
   // );
-  // {
-  //   !isAuthenticated && !loading ? (
-  //     <Navigate to="/login" />
-  //   ) : (
-  //     <Navigate to="/register" />
-  //   );
-  // };
+
   {
     return isAuthenticated ? children : <Navigate to="/login" />;
   };

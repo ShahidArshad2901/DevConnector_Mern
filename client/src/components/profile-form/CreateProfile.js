@@ -2,8 +2,7 @@ import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile } from "../../actions/profile";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const CreateProfile = ({ createProfile }) => {
   const [formData, setFormData] = useState({
@@ -21,6 +20,7 @@ const CreateProfile = ({ createProfile }) => {
     linkedin: "",
   });
 
+  const navigate = useNavigate();
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
   const {
@@ -43,7 +43,10 @@ const CreateProfile = ({ createProfile }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    createProfile(formData);
+    const success = !!createProfile(formData);
+    if (success) {
+      navigate("/dashboard");
+    }
   };
   return (
     <section className="container">
