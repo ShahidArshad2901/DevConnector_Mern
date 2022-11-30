@@ -68,7 +68,6 @@ const EditProfile = ({
   const onSubmit = (e) => {
     e.preventDefault();
     const success = !!createProfile(formData, true);
-    console.log(success, "RETURN");
     if (success) {
       navigate("/dashboard");
     }
