@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Route, Navigate, Routes } from "react-router-dom";
 
-console.log("we are here");
 const PrivateRoute = ({
   children,
   component: Component,
