@@ -5,7 +5,6 @@ const Profile = require("../../models/Profile");
 const Post = require("../../models/Post");
 const User = require("../../models/User");
 const { check, validationResult } = require("express-validator");
-const req = require("express/lib/request");
 const request = require("request");
 const config = require("config");
 
@@ -328,6 +327,7 @@ router.get("/github/:username", (req, res) => {
     };
 
     request(options, (error, response, body) => {
+      console.log(error, "error");
       if (error) console.error(error);
 
       if (response.statusCode !== 200) {
