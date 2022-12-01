@@ -10,7 +10,7 @@ import {
   GET_REPOS,
 } from "./types";
 
-// Get current users profile
+// Get current user profile
 export const getCurrentProfile = () => async (dispatch) => {
   try {
     const res = await axios.get("/api/profile/me");
@@ -31,7 +31,7 @@ export const getCurrentProfile = () => async (dispatch) => {
   }
 };
 
-// Get All Profile
+// Get All Profiles
 export const getProfiles = () => async (dispatch) => {
   dispatch({
     type: CLEAR_PROFILE,
@@ -39,7 +39,6 @@ export const getProfiles = () => async (dispatch) => {
 
   try {
     const res = await axios.get("/api/profile");
-
     dispatch({
       type: GET_PROFILES,
       payload: res.data,
@@ -79,10 +78,6 @@ export const getProfileById = (userId) => async (dispatch) => {
 
 // Get GitHUb Repos
 export const getGithubRepos = (username) => async (dispatch) => {
-  dispatch({
-    type: CLEAR_PROFILE,
-  });
-
   try {
     const res = await axios.get(`/api/profile/github/${username}`);
 
