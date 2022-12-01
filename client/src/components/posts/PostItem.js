@@ -3,51 +3,56 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { connect } from "react-redux";
-import { addLike, removeLike } from "../../actions/post";
+import { addLike, removeLike, deletePost } from "../../actions/post";
 const PostItem = ({
+  deletePost,
   addLike,
   removeLike,
   auth,
   post: { _id, text, name, avatar, user, likes, comments, date },
 }) => {
   return (
-    <div class="post bg-white p-1 my-1">
+    <div className="post bg-white p-1 my-1">
       <div>
-        <a href="profile.html">
-          <img class="round-img" src={avatar} alt="" />
+        <Link to={`/profile/${user}`}>
+          <img className="round-img" src={avatar} alt="" />
           <h4>{name}</h4>
-        </a>
+        </Link>
       </div>
       <div>
-        <p class="my-1">{text}</p>
-        <p class="post-date">
+        <p className="my-1">{text}</p>
+        <p className="post-date">
           Posted on <Moment format="YYYY/MM/DD">{date}</Moment>
         </p>
         <button
           type="button"
-          class="btn btn-light"
+          className="btn btn-light"
           onClick={(e) => addLike(_id)}
         >
           Like
           {likes.length > 0 && (
-            <span class="comment-count"> {likes.length}</span>
+            <span className="comment-count"> {likes.length}</span>
           )}
         </button>
         <button
           type="button"
-          class="btn btn-light"
+          className="btn btn-light"
           onClick={(e) => removeLike(_id)}
         >
           Unlike
         </button>
-        <Link to={`/post/${_id}`} class="btn btn-primary">
+        <Link to={`/post/${_id}`} className="btn btn-primary">
           Discussion{" "}
           {comments.length > 0 && (
-            <span class="comment-count">{comments.length}</span>
+            <span className="comment-count">{comments.length}</span>
           )}
         </Link>
         {!auth.loading && user === auth.user._id && (
-          <button type="button" class="btn btn-danger">
+          <button
+            onClick={(e) => deletePost(_id)}
+            type="button"
+            className="btn btn-danger"
+          >
             DELETE
           </button>
         )}
@@ -59,10 +64,15 @@ const PostItem = ({
 PostItem.propTypes = {
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  addLike: PropTypes.func.isRequired,
+  removeLike: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { addLike, removeLike })(PostItem);
+export default connect(mapStateToProps, { addLike, removeLike, deletePost })(
+  PostItem
+);

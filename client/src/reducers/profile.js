@@ -5,6 +5,7 @@ import {
   UPDATE_PROFILE,
   GET_PROFILES,
   GET_REPOS,
+  DELETE_POST,
 } from "../actions/types";
 
 const initialState = {
@@ -43,6 +44,12 @@ export default function (state = initialState, action) {
         ...state,
         profile: null,
         repos: [],
+        loading: false,
+      };
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post._id !== payload),
         loading: false,
       };
     case GET_REPOS:

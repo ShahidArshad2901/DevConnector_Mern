@@ -4,20 +4,19 @@ import { connect } from "react-redux";
 import { getPosts } from "../../actions/post";
 import Spinner from "../layout/Spinner";
 import PostItem from "./PostItem";
+import PostForm from "./PostForm";
 
 const Post = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
-  console.log(posts, "Post");
   return loading ? (
     <Spinner />
   ) : (
     <Fragment>
       <h1 className="large text-primary">Posts</h1>
       <p className="lead">Welcome to the Community</p>
-      {/* Post form */}
-      {console.log(posts, "POSTS")}
+      <PostForm />
       <div className="posts">
         {posts.map((post) => (
           <PostItem key={post._id} post={post} />
