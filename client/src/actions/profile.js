@@ -56,25 +56,28 @@ export const getProfiles = () => async (dispatch) => {
 };
 
 // Get Profile by ID
-export const getProfileById = (userId) => async (dispatch) => {
-  try {
-    const res = await axios.get(`/api/profile/user/${userId}`);
-
-    dispatch({
-      type: GET_PROFILE,
-      payload: res.data,
-    });
-  } catch (error) {
-    console.log("We are having error");
-    dispatch({
-      type: PROFILE_ERROR,
-      payload: {
-        msg: error.response.statusText,
-        status: error.response.status,
-      },
-    });
-  }
-};
+export const getProfileById =
+  ({ id }) =>
+  async (dispatch) => {
+    try {
+      console.log(id);
+      const res = await axios.get(`/api/profile/user/${id}`);
+      console.log(res, "PROFILESSSSS");
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log("We are having error");
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: {
+          msg: error.response.statusText,
+          status: error.response.status,
+        },
+      });
+    }
+  };
 
 // Get GitHUb Repos
 export const getGithubRepos = (username) => async (dispatch) => {
@@ -271,7 +274,7 @@ export const deleteEducation = (id) => async (dispatch) => {
 export const deleteAccount = () => async (dispatch) => {
   if (window.confirm("Are You sure, This can't be undone")) {
     try {
-      const res = await axios.delete("/api/profile");
+      await axios.delete("/api/profile");
 
       dispatch({
         type: CLEAR_PROFILE,
