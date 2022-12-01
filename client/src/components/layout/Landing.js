@@ -5,10 +5,10 @@ import PropTypes from "prop-types";
 
 const Landing = ({ isAuthenticated }) => {
   if (isAuthenticated) {
-    console.log(isAuthenticated, "YAar authentication");
+    // console.log(isAuthenticated, "YAar authentication");
     return <Navigate to="/dashboard" />;
   }
-  console.log(isAuthenticated, "YAar authentication");
+  // console.log(isAuthenticated, "YAar authentication");
 
   return (
     <section className="landing">

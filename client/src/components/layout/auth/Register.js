@@ -27,7 +27,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     } else {
       register({ name, email, password });
 
-      console.log(formData);
+      // console.log(formData);
       // const newUser = {
       //   name,
       //   email,

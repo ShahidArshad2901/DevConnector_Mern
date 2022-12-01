@@ -20,7 +20,7 @@ export const getCurrentProfile = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
-    console.log("We are having error");
+    // console.log("We are having error");
     dispatch({
       type: PROFILE_ERROR,
       payload: {
@@ -44,7 +44,7 @@ export const getProfiles = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
-    console.log("We are having error");
+    // console.log("We are having error");
     dispatch({
       type: PROFILE_ERROR,
       payload: {
@@ -62,13 +62,13 @@ export const getProfileById =
     try {
       console.log(id);
       const res = await axios.get(`/api/profile/user/${id}`);
-      console.log(res, "PROFILESSSSS");
+      // console.log(res, "PROFILESSSSS");
       dispatch({
         type: GET_PROFILE,
         payload: res.data,
       });
     } catch (error) {
-      console.log("We are having error");
+      // console.log("We are having error");
       dispatch({
         type: PROFILE_ERROR,
         payload: {
@@ -89,7 +89,7 @@ export const getGithubRepos = (username) => async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
-    console.log("We are having error");
+    // console.log("We are having error");
     dispatch({
       type: PROFILE_ERROR,
       payload: {

@@ -20,7 +20,7 @@ export const loadUser = () => async (dispatch) => {
     setAuthToken(localStorage.token);
     try {
       const res = await axios.get("/api/auth ");
-      console.log(res);
+      // console.log(res);
       dispatch({
         type: USER_LOADED,
         payload: res.data,
@@ -43,7 +43,7 @@ export const register =
     };
 
     const body = JSON.stringify({ name, email, password });
-    console.log(body, "IN auth.js");
+    // console.log(body, "IN auth.js");
 
     try {
       const res = await axios.post("/api/users", body, config); // axios return promise
@@ -76,7 +76,7 @@ export const login = (email, password) => async (dispatch) => {
   };
 
   const body = JSON.stringify({ email, password });
-  console.log(body, "IN auth.js");
+  // console.log(body, "IN auth.js");
 
   try {
     const res = await axios.post("/api/auth", body, config); // axios return promise
