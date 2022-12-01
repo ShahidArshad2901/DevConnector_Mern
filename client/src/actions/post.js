@@ -3,6 +3,7 @@ import { setAlert } from "./alert";
 import {
   ADD_POST,
   DELETE_POST,
+  GET_POST,
   GET_POSTS,
   POST_ERROR,
   UPDATE_LIKES,
@@ -28,6 +29,7 @@ export const getPosts = () => async (dispatch) => {
   }
 };
 
+// Add Like
 export const addLike = (id) => async (dispatch) => {
   try {
     const res = await axios.put(`/api/posts/like/${id}`);
@@ -108,6 +110,27 @@ export const addPost = (formData) => async (dispatch) => {
     dispatch(setAlert("Post Added", "success"));
   } catch (error) {
     console.log(error);
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+// Get Post
+export const getPost = (id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/posts/${id}`);
+
+    dispatch({
+      type: GET_POST,
+      payload: res.data,
+    });
+    console.log(res.data);
+  } catch (error) {
     dispatch({
       type: POST_ERROR,
       payload: {
