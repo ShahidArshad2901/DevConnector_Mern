@@ -70,27 +70,29 @@ export const removeLike = (id) => async (dispatch) => {
 };
 
 // remove post
-export const deletePost = (id) => async (dispatch) => {
-  try {
-    await axios.delete(`/api/posts/${id}`);
+export const deletePost =
+  ({ id }) =>
+  async (dispatch) => {
+    try {
+      await axios.delete(`/api/posts/${id}`);
 
-    dispatch({
-      type: DELETE_POST,
-      payload: id,
-    });
+      dispatch({
+        type: DELETE_POST,
+        payload: id,
+      });
 
-    dispatch(setAlert("Post Removed", "success"));
-  } catch (error) {
-    console.log(error);
-    dispatch({
-      type: POST_ERROR,
-      payload: {
-        msg: error.response.statusText,
-        status: error.response.status,
-      },
-    });
-  }
-};
+      dispatch(setAlert("Post Removed", "success"));
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: POST_ERROR,
+        payload: {
+          msg: error.response.statusText,
+          status: error.response.status,
+        },
+      });
+    }
+  };
 
 // add post
 export const addPost = (formData) => async (dispatch) => {
@@ -121,22 +123,24 @@ export const addPost = (formData) => async (dispatch) => {
 };
 
 // Get Post
-export const getPost = (id) => async (dispatch) => {
-  try {
-    const res = await axios.get(`/api/posts/${id}`);
+export const getPost =
+  ({ id }) =>
+  async (dispatch) => {
+    try {
+      console.log(`this is post id: ${id}`);
+      const res = await axios.get(`/api//posts/${id}`);
 
-    dispatch({
-      type: GET_POST,
-      payload: res.data,
-    });
-    console.log(res.data);
-  } catch (error) {
-    dispatch({
-      type: POST_ERROR,
-      payload: {
-        msg: error.response.statusText,
-        status: error.response.status,
-      },
-    });
-  }
-};
+      dispatch({
+        type: GET_POST,
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: POST_ERROR,
+        payload: {
+          msg: error.response.statusText,
+          status: error.response.status,
+        },
+      });
+    }
+  };
